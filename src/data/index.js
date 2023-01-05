@@ -24,7 +24,7 @@ const Profile_Menu = [
   },
 ];
 
-const Nav_Buttons = [
+export  const Nav_Buttons = [
   {
     index: 0,
     icon: <ChatCircleDots />,
@@ -223,7 +223,7 @@ const Message_options = [
 export {
   Profile_Menu,
   Nav_Setting,
-  Nav_Buttons,
+  // Nav_Buttons,
   ChatList,
   Chat_History,
   Message_options,
