@@ -62,7 +62,7 @@ const Conversation = () => {
       <Box
         sx={{
           width: "100%",
-          backgroundColor: "#F8FAFF",
+          backgroundColor: theme.palette.mode === "Light" ? "#F8FAFF" : theme.palette.background.paper,
           boxShadow: "0px 0px 0px rgba(0, 0, 0, 0.25)",
         }}
         p={2}
@@ -115,7 +115,7 @@ const Conversation = () => {
       <Box
         sx={{
           width: "100%",
-          backgroundColor: "#F8FAFF",
+          backgroundColor: theme.palette.mode === "Light" ? "#F8FAFF" : theme.palette.background.paper,
           boxShadow: "0px 0px 0px rgba(0, 0, 0, 0.25)",
         }}
         p={2}
