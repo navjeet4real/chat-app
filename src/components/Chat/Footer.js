@@ -101,7 +101,6 @@ const ChatInput = ({ openPicker, setOpenPicker }) => {
                 </Tooltip>
               ))}
             </Stack>
-
             <InputAdornment>
               <IconButton
                 onClick={() => {
