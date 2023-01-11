@@ -1,6 +1,7 @@
 import { useTheme } from "@emotion/react";
 import { Stack, Box } from "@mui/system";
 import React from "react";
+import Contact from "../../components/Contact";
 import Conversation from "../../components/Conversation/Index";
 import Chats from "./Chats";
 
@@ -13,7 +14,7 @@ const GeneralApp = () => {
         <Box
           sx={{
             height: "100%",
-            width: "calc(100vw - 420px)",
+            width: "calc(100vw - 740px)",
             backgroundColor:
               theme.palette.mode === "light"
                 ? "#F0F4FA"
@@ -22,6 +23,7 @@ const GeneralApp = () => {
         >
           <Conversation />
         </Box>
+        <Contact />
       </Stack>
     </>
   );
