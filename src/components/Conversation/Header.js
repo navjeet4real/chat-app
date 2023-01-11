@@ -18,8 +18,10 @@ import {
   VideoCamera,
 } from "phosphor-react";
 import React from "react";
+import { dispatch } from "../../redux/store";
 import StyledBadge from "../StyledBadge";
-
+import { ToggleSidebar } from "../../redux/slices/app";
+import { useDispatch } from "react-redux";
 const StyledInput = styled(TextField)(({ theme }) => ({
   "& .MuiInputBase-input": {
     paddingTop: "12px !important",
@@ -29,7 +31,7 @@ const StyledInput = styled(TextField)(({ theme }) => ({
 
 const Header = () => {
   const theme = useTheme();
-
+  const dispatch = useDispatch()
   return (
     <Box
       sx={{
@@ -48,7 +50,9 @@ const Header = () => {
         alignItems="center"
         direction={"row"}
       >
-        <Stack direction={"row"} spacing={2}>
+        <Stack onClick={() => {
+          dispatch(ToggleSidebar())
+        }} direction={"row"} spacing={2}>
           <Box>
             <StyledBadge
               overlap="circular"
