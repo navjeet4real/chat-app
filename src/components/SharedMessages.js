@@ -1,0 +1,46 @@
+import { useTheme } from "@emotion/react";
+import { Box, IconButton, Stack, Typography } from "@mui/material";
+import { CaretLeft } from "phosphor-react";
+import React from "react";
+import { useDispatch } from "react-redux";
+import { UpdateSidebarType } from "../redux/slices/app";
+
+const SharedMessages = () => {
+    const theme = useTheme();
+    const dispatch = useDispatch()
+  return (
+    <Box sx={{ width: 320, height: "100vh" }}>
+      <Stack sx={{ height: "100%" }}>
+        <Box
+          sx={{
+            boxShadow: "0px 0px 0px rbga(0,0,0, 2.5)",
+            with: "100%",
+            backgroundColor:
+              theme.palette.mode === "light"
+                ? "#F8FAFF"
+                : theme.palette.background,
+          }}
+        >
+          <Stack
+            sx={{ height: "100%", p: 2 }}
+            alignItems={"center"}
+            direction="row"
+            // justifyContent="space-between"
+            spacing={3}
+          >
+            {/* <Typography variant="subtitle2">Contact Info</Typography> */}
+            <IconButton
+              onClick={() => {
+                dispatch(UpdateSidebarType("CONTACT"));
+              }}
+            >
+              <CaretLeft />
+            </IconButton>
+          </Stack>
+        </Box>
+      </Stack>
+    </Box>
+  );
+};
+
+export default SharedMessages;
