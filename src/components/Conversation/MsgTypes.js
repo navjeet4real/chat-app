@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import { useTheme } from "@emotion/react";
 import {
   Box,
@@ -13,7 +13,7 @@ import {
 import { DotsThreeVertical, DownloadSimple, Image } from "phosphor-react";
 import { Message_options } from "../../data";
 
-const DocMsg = ({ item }) => {
+const DocMsg = ({ item, menu }) => {
   const theme = useTheme();
 
   return (
@@ -53,13 +53,12 @@ const DocMsg = ({ item }) => {
           </Typography>
         </Stack>
       </Box>
-      <MessageOptions />
-
+      {menu && <MessageOptions />}
     </Stack>
   );
 };
 
-const LinkMsg = ({ item }) => {
+const LinkMsg = ({ item, menu }) => {
   const theme = useTheme();
 
   return (
@@ -110,13 +109,12 @@ const LinkMsg = ({ item }) => {
           </Stack>
         </Stack>
       </Box>
-      <MessageOptions />
-
+      {menu && <MessageOptions />}
     </Stack>
   );
 };
 
-const ReplyMsg = ({ item }) => {
+const ReplyMsg = ({ item, menu }) => {
   const theme = useTheme();
   return (
     <Stack direction={"row"} justifyContent={item.incoming ? "start" : "end"}>
@@ -153,13 +151,12 @@ const ReplyMsg = ({ item }) => {
           </Typography>
         </Stack>
       </Box>
-      <MessageOptions />
-
+      {menu && <MessageOptions />}
     </Stack>
   );
 };
 
-const MediaMsg = ({ item }) => {
+const MediaMsg = ({ item, menu }) => {
   const theme = useTheme();
   return (
     <Stack direction={"row"} justifyContent={item.incoming ? "start" : "end"}>
@@ -188,13 +185,12 @@ const MediaMsg = ({ item }) => {
           </Typography>
         </Stack>
       </Box>
-      <MessageOptions />
-
+      {menu && <MessageOptions />}
     </Stack>
   );
 };
 
-const TextMsg = ({ item }) => {
+const TextMsg = ({ item, menu }) => {
   const theme = useTheme();
   return (
     <Stack direction={"row"} justifyContent={item.incoming ? "start" : "end"}>
@@ -215,7 +211,7 @@ const TextMsg = ({ item }) => {
           {item.message}
         </Typography>
       </Box>
-      <MessageOptions />
+      {menu && <MessageOptions />}
     </Stack>
   );
 };
