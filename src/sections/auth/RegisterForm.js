@@ -1,25 +1,20 @@
-import React from "react";
-import { useState } from "react";
-import FormProvider from "../../components/hook-form/FormProvider";
-import * as Yup from "yup";
-import { useForm } from "react-hook-form";
-import { yupResolver } from "@hookform/resolvers/yup";
-import {
-  Alert,
-  InputAdornment,
-  Stack,
-  IconButton,
-  Link,
-  Button,
-} from "@mui/material";
-import { RHFTextField } from "../../components/hook-form";
-import { Eye, EyeSlash } from "phosphor-react";
 import { useTheme } from "@emotion/react";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { Alert, IconButton, InputAdornment, Stack, Button } from "@mui/material";
+import { Eye, EyeSlash } from "phosphor-react";
+import React, { useState } from "react";
+import { useForm } from "react-hook-form";
+import * as Yup from "yup";
+import { RHFTextField } from "../../components/hook-form";
+import FormProvider from "../../components/hook-form/FormProvider";
 
-const LoginForm = () => {
+const RegisterForm = () => {
   const [showPassword, setShowPassword] = useState(false);
   const theme = useTheme();
-  const LoginSchema = Yup.object().shape({
+  const RegisterSchema = Yup.object().shape({
+    firstName: Yup.string().required("First name is required"),
+    lastName: Yup.string().required("Last name is required"),
+
     email: Yup.string()
       .required("Email is required")
       .email("Email must be valid email address"),
@@ -27,11 +22,13 @@ const LoginForm = () => {
   });
 
   const defaultValues = {
+    firstName: "",
+    lastName: "",
     email: "dawg@gmail.com",
     password: "Damn@420",
   };
   const methods = useForm({
-    resolver: yupResolver(LoginSchema),
+    resolver: yupResolver(RegisterSchema),
     defaultValues,
   });
 
@@ -59,7 +56,12 @@ const LoginForm = () => {
         {!!errors.afterSubmit && (
           <Alert severity="error">{errors.afterSubmit.message}</Alert>
         )}
-        <RHFTextField name="email" label="Email address" />
+        <Stack direction={{ xs: "column", sm: "row" }} spacing={2}>
+          <RHFTextField name="firstName" label="First Name" />
+          <RHFTextField name="lastName" label="Last Name" />
+        </Stack>
+        <RHFTextField name="email" label="Email Address" />
+
         <RHFTextField
           name="password"
           label="Password"
@@ -78,12 +80,6 @@ const LoginForm = () => {
             ),
           }}
         />
-      </Stack>
-      <Stack alignItems={"flex-end"} sx={{ my: 2 }}>
-        <Link variant="body2" color="inherit" underline="always">
-          Forgot Password.?
-        </Link>
-      </Stack>
       <Button
         fullWidth
         color="inherit"
@@ -101,10 +97,11 @@ const LoginForm = () => {
           },
         }}
       >
-        Login
+        Create Account
       </Button>
+      </Stack>
     </FormProvider>
   );
 };
 
-export default LoginForm;
+export default RegisterForm;
