@@ -45,7 +45,50 @@ const Nav_Setting = [
     icon: <GearSix />,
   },
 ];
- 
+ const CallLogs = [
+  {
+    id: 0,
+    img: faker.image.avatar(),
+    missed: false,
+    name: faker.name.firstName(),
+    incoming: true,
+  },
+  {
+    id: 1,
+    img: faker.image.avatar(),
+    missed: false,
+    name: faker.name.firstName(),
+    incoming: true,
+  },
+  {
+    id: 2,
+    img: faker.image.avatar(),
+    missed: false,
+    name: faker.name.firstName(),
+    incoming: true,
+  },
+  {
+    id: 3,
+    img: faker.image.avatar(),
+    missed: true,
+    name: faker.name.firstName(),
+    incoming: true,
+  },
+  {
+    id: 4,
+    img: faker.image.avatar(),
+    missed: false,
+    name: faker.name.firstName(),
+    incoming: false,
+  },
+  {
+    id: 5,
+    img: faker.image.avatar(),
+    missed: true,
+    name: faker.name.firstName(),
+    incoming: false,
+  },
+ ]
 const ChatList = [
   {
     id: 0,
@@ -303,6 +346,7 @@ const SHARED_DOCS = [
 export {
   Profile_Menu,
   Nav_Setting,
+  CallLogs,
   // Nav_Buttons,
   ChatList,
   Chat_History,
