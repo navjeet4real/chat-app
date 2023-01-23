@@ -24,7 +24,7 @@ const Profile_Menu = [
   },
 ];
 
-export  const Nav_Buttons = [
+export const Nav_Buttons = [
   {
     index: 0,
     icon: <ChatCircleDots />,
@@ -45,13 +45,14 @@ const Nav_Setting = [
     icon: <GearSix />,
   },
 ];
- const CallLogs = [
+const CallLogs = [
   {
     id: 0,
     img: faker.image.avatar(),
     missed: false,
     name: faker.name.firstName(),
     incoming: true,
+    online: false,
   },
   {
     id: 1,
@@ -59,12 +60,14 @@ const Nav_Setting = [
     missed: false,
     name: faker.name.firstName(),
     incoming: true,
+    online: false,
   },
   {
     id: 2,
     img: faker.image.avatar(),
     missed: false,
     name: faker.name.firstName(),
+    online: true,
     incoming: true,
   },
   {
@@ -72,6 +75,7 @@ const Nav_Setting = [
     img: faker.image.avatar(),
     missed: true,
     name: faker.name.firstName(),
+    online: true,
     incoming: true,
   },
   {
@@ -80,6 +84,7 @@ const Nav_Setting = [
     missed: false,
     name: faker.name.firstName(),
     incoming: false,
+    online: false,
   },
   {
     id: 5,
@@ -87,8 +92,48 @@ const Nav_Setting = [
     missed: true,
     name: faker.name.firstName(),
     incoming: false,
+    online: true,
   },
- ]
+];
+
+const MembersList = [
+  {
+    id: 0,
+    img: faker.image.avatar(),
+    name: faker.name.firstName(),
+    online: true,
+  },
+  {
+    id: 1,
+    img: faker.image.avatar(),
+    name: faker.name.firstName(),
+    online: false,
+  },
+  {
+    id: 2,
+    img: faker.image.avatar(),
+    name: faker.name.firstName(),
+    online: true,
+  },
+  {
+    id: 3,
+    img: faker.image.avatar(),
+    name: faker.name.firstName(),
+    online: true,
+  },
+  {
+    id: 4,
+    img: faker.image.avatar(),
+    name: faker.name.firstName(),
+    online: false,
+  },
+  {
+    id: 5,
+    img: faker.image.avatar(),
+    name: faker.name.firstName(),
+    online: false,
+  },
+];
 const ChatList = [
   {
     id: 0,
@@ -296,7 +341,7 @@ const SHARED_LINKS = [
     incoming: true,
     outgoing: false,
   },
-]
+];
 const SHARED_DOCS = [
   {
     type: "msg",
@@ -340,9 +385,7 @@ const SHARED_DOCS = [
     incoming: true,
     outgoing: false,
   },
-  
-
-]
+];
 export {
   Profile_Menu,
   Nav_Setting,
@@ -353,4 +396,5 @@ export {
   Message_options,
   SHARED_LINKS,
   SHARED_DOCS,
+  MembersList,
 };

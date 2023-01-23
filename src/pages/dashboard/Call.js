@@ -7,8 +7,8 @@ import {
   Stack,
   Typography,
 } from "@mui/material";
-import { MagnifyingGlass, PhoneCall, Plus } from "phosphor-react";
-import React from "react";
+import { MagnifyingGlass, Plus } from "phosphor-react";
+import React,{ useState }  from "react";
 import { SimpleBarStyle } from "../../components/Scrollbar";
 import {
   Search,
@@ -17,9 +17,14 @@ import {
 } from "../../components/Search";
 import { CallLogElement } from "../../components/CallElement";
 import { CallLogs } from "../../data";
+import StartCall from "../../sections/main/StartCall";
 
 const Call = () => {
   const theme = useTheme();
+  const [ openDialog, setOpenDialog] = useState(false);
+  const handleCloseDialog = () => {
+    setOpenDialog(false)
+  }
   return (
     <>
       <Stack direction="row" sx={{ width: "100%" }}>
@@ -60,10 +65,10 @@ const Call = () => {
               </Typography>
               <IconButton
                 onClick={() => {
-                  // setOpenDialog(true);
+                  setOpenDialog(true);
                 }}
               >
-                <PhoneCall style={{ color: theme.palette.primary.main }} />
+                <Plus style={{ color: theme.palette.primary.main }} />
               </IconButton>
             </Stack>
             <Divider />
@@ -85,6 +90,7 @@ const Call = () => {
         </Box>
         {/* right */}
       </Stack>
+      {openDialog && <StartCall open={openDialog} handleclose={handleCloseDialog} />}
     </>
   );
 };
