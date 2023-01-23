@@ -1,6 +1,5 @@
 import React from "react";
 import {
-  Button,
   Dialog,
   DialogContent,
   DialogTitle,
@@ -13,8 +12,8 @@ import {
   StyledInputBase,
 } from "../../components/Search";
 import { MagnifyingGlass } from "phosphor-react";
-import { CallElement, CallLogElement } from "../../components/CallElement";
-import { CallList, MembersList } from "../../data";
+import { CallElement } from "../../components/CallElement";
+import { MembersList } from "../../data";
 import { SimpleBarStyle } from "../../components/Scrollbar";
 
 const Transition = React.forwardRef(function Transition(props, ref) {
@@ -34,7 +33,6 @@ const StartCall = ({ open, handleclose }) => {
       >
         <DialogTitle sx={{ mb: 3 }}>Start Call</DialogTitle>
         <DialogContent>
-          {/* <CreateGroupForm handleClose={handleClose} /> */}
           <Stack spacing={3}>
             <Stack sx={{ width: "100%" }}>
               <Search>

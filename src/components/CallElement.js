@@ -1,7 +1,6 @@
 import { Avatar, Box, IconButton, Stack, Typography } from "@mui/material";
-import { ArrowDownLeft, ArrowUpRight, Phone, PhoneCall, VideoCamera } from "phosphor-react";
+import { ArrowDownLeft, ArrowUpRight, Phone, VideoCamera } from "phosphor-react";
 import React from "react";
-import { faker } from "@faker-js/faker";
 import StyledBadge from "./StyledBadge";
 
 const CallLogElement = ({ online, incoming, missed,img, name }) => {
