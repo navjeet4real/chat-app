@@ -1,8 +1,15 @@
 import { Container, Stack } from "@mui/system";
 import React from "react";
-import { Outlet } from "react-router-dom";
-import Logo from "../../assets/Images/logo.ico"
+import { Navigate, Outlet } from "react-router-dom";
+import Logo from "../../assets/Images/logo.ico";
+
+const isAuthenticated = true;
+
 const MainLayout = () => {
+  if (isAuthenticated) {
+    return <Navigate to="/app" />;
+  }
+
   return (
     <>
       <Container sx={{ mt: 5 }} maxWidth="sm">
@@ -12,7 +19,7 @@ const MainLayout = () => {
             direction="column"
             alignItems={"center"}
           >
-            <img style={{height: 120, width:120}} src={Logo} alt={"logo"} />
+            <img style={{ height: 120, width: 120 }} src={Logo} alt={"logo"} />
           </Stack>
         </Stack>
 
