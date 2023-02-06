@@ -27,7 +27,6 @@ export default function Router() {
         { path: "login", element: <LoginPage /> },
         { path: "register", element: <RegisterPage /> },
         { path: "forgot", element: <ForgotPage /> },
-        
         { path: "new-password", element: <NewPasswordPage /> },
       ]
     },
