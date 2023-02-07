@@ -4,7 +4,7 @@ import { BASE_URL } from "../config";
 
 const axiosInstance = axios.create({baseURL : BASE_URL});
 
-axios.interceptors.response.use(
+axiosInstance.interceptors.response.use(
     (response) => (response),
     (error) => 
         Promise.reject(

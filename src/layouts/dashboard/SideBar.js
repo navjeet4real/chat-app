@@ -16,6 +16,8 @@ import { Nav_Buttons, Profile_Menu } from "../../data/index.js";
 import useSettings from "../../hooks/useSettings";
 import AntSwitch from "../../components/AntSwitch";
 import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { LogoutUser } from "../../redux/slices/auth";
 
 const getPath = (index) => {
   switch (index) {
@@ -46,6 +48,7 @@ const getMenuPath = (index) => {
   }
 };
 const SideBar = () => {
+  const dispatch = useDispatch();
   const theme = useTheme();
   let navigate = useNavigate();
   const [selected, setSelected] = useState(0);
@@ -195,11 +198,16 @@ const SideBar = () => {
                 <MenuItem
                   onClick={() => {
                     handleClick();
+                    
                   }}
                 >
                   <Stack
                     onClick={() => {
-                      navigate(getMenuPath(index));
+                      if (index === 2) {
+                        dispatch(LogoutUser());
+                      }else{
+                        navigate(getMenuPath(index));
+                      }
                     }}
                     sx={{ width: 100 }}
                     direction="row"

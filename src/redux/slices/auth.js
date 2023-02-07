@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import axiosInstance from "../../utils/axios";
+import axios from "../../utils/axios";
 
 const initialState = {
   isLoggedIn: false,
@@ -25,8 +25,9 @@ const slice = createSlice({
 export default slice.reducer;
 
 // log in
-export function LogIn(formValues) {
-  return async (dispatch, getStatee) => {
+export function LoginUser(formValues) {
+  console.log(formValues, "formValues");
+  return async (dispatch, getState) => {
     await axios
       .post(
         "/auth/login",
@@ -35,15 +36,27 @@ export function LogIn(formValues) {
         },
         {
           headers: {
-            "Content-Type": "aapplication/json",
+            "Content-Type": "application/json",
           },
         }
       )
       .then(function (response) {
         console.log(response);
+        dispatch(
+          slice.actions.logIn({
+            isLoggedIn: true,
+            token: response.data.token,
+          })
+        );
       })
       .catch(function (err) {
         console.log(err);
       });
+  };
+}
+
+export function LogoutUser() {
+  return async (dispatch, getState) => {
+    dispatch(slice.actions.signOut());
   };
 }
