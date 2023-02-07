@@ -15,23 +15,27 @@ import {
 import { RHFTextField } from "../../components/hook-form";
 import { Eye, EyeSlash } from "phosphor-react";
 import { useTheme } from "@emotion/react";
-import { Link as RouterLink } from "react-router-dom";
+import { Link as RouterLink, useSearchParams } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { NewPassword } from "../../redux/slices/auth";
 
 const NewPasswordForm = () => {
+  const {quesryParameters} = useSearchParams();
+  const dispatch = useDispatch();
   const [showPassword, setShowPassword] = useState(false);
   const theme = useTheme();
   const NewPasswordSchema = Yup.object().shape({
-    newPassword: Yup.string()
+    password: Yup.string()
       .min(6, "Password must be at least 6 characters")
       .required("Password is required"),
-    confirmPassword: Yup.string()
+    passwordConfirm: Yup.string()
       .required("Password is required")
       .oneOf([Yup.ref("newPassword"), null], "Password must match"),
   });
 
   const defaultValues = {
-    newPassword: "",
-    confirmPassword: "",
+    password: "",
+    passwordConfirm: "",
   };
   const methods = useForm({
     resolver: yupResolver(NewPasswordSchema),
@@ -47,6 +51,7 @@ const NewPasswordForm = () => {
 
   const onSubmit = async (data) => {
     try {
+      dispatch(NewPassword({...data, token: quesryParameters.get("token")}))
     } catch (error) {
       console.error(error);
       reset();
@@ -64,7 +69,7 @@ const NewPasswordForm = () => {
         )}
 
         <RHFTextField
-          name="newPassword"
+          name="password"
           label="New Password"
           type={showPassword ? "text" : "password"}
           InputProps={{
@@ -82,7 +87,7 @@ const NewPasswordForm = () => {
           }}
         />
         <RHFTextField
-          name="confirmPassword"
+          name="passwordConfirm"
           label="Confirm Password"
           type={showPassword ? "text" : "password"}
           InputProps={{
