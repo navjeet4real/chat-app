@@ -3,6 +3,7 @@ import { Button, Stack } from "@mui/material";
 import React from "react";
 import { FormProvider, useForm } from "react-hook-form";
 import * as Yup from "yup";
+import RHFCodes from "../../components/hook-form/RHFCodes";
 
 const VerifyForm = () => {
   const VerifyCodeSchema = Yup.object().shape({
@@ -41,7 +42,7 @@ const VerifyForm = () => {
   <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
     <Stack spacing={3}>
 
-    
+    <RHFCodes keyName="code" inputs={["code1","code2","code3","code4","code5","code6"]} />
 
     <Button
         fullWidth
