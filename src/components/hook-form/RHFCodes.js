@@ -1,8 +1,8 @@
 import React from "react";
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
 import { Stack, TextField } from "@mui/material";
 import { useRef } from "react";
-import { Controller, useFormContext } from "react-hook-form";
+import { Controller , useFormContext } from "react-hook-form";
 import useEventListener from '../../hooks/useEventListner';
 
 // RHFCodes.propTypes = {
@@ -10,11 +10,14 @@ import useEventListener from '../../hooks/useEventListner';
 //     inputs: PropTypes.arrayOf(PropTypes.string),
 //   };
 
-const RHFCodes = ({ keyName = "", inputs = [], ...other }) => {
+export default function RHFCodes ({ keyName = "", inputs = [], ...other }) {
+  debugger
   const codesRef = useRef(null);
 
   const { control, setValue } = useFormContext();
+
   console.log(inputs,"inputs")
+
   const handlePaste = (event) => {
     let data = event.clipboardData.getData('text');
 
@@ -83,4 +86,4 @@ const RHFCodes = ({ keyName = "", inputs = [], ...other }) => {
   );
 };
 
-export default RHFCodes;
+// export default RHFCodes;

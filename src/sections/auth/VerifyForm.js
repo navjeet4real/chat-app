@@ -50,7 +50,9 @@ const VerifyForm = () => {
   <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
     <Stack spacing={3}>
 
-    <RHFCodes keyName="code" inputs={["code1","code2","code3","code4","code5","code6"]} />
+    <RHFCodes 
+    keyName="code" 
+    inputs={["code1", "code2", "code3", "code4", "code5", "code6"]}/>
 
     <Button
         fullWidth

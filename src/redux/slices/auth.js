@@ -181,9 +181,6 @@ export function VerifyEmail(formValues) {
       })
       .catch((error) => {
         console.log(error);
-      });
-    // .finally(() => {
-    //   window.location.href = "/auth/verify-otp";
-    // });
+      })
   };
 }
