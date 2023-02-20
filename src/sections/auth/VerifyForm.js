@@ -4,10 +4,9 @@ import React from "react";
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 import * as Yup from "yup";
-import FormProvider, { RHFTextField } from "../../components/hook-form";
+import FormProvider from "../../components/hook-form";
 import RHFCodes from "../../components/hook-form/RHFCodes";
 import { VerifyEmail } from "../../redux/slices/auth";
-import { Eye, EyeSlash } from "phosphor-react";
 
 const VerifyForm = () => {
   const dispatch = useDispatch();
