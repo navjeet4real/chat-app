@@ -1,64 +1,75 @@
-import { Dialog, Stack, Tabs, Tab, DialogContent } from "@mui/material";
-import React, { useEffect,useState } from "react";
+import { Dialog, Stack, Tabs, Tab,Slide, DialogContent } from "@mui/material";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { FetchFriendRequests, FetchFriends, FetchUsers } from "../../redux/slices/app";
+import {
+  FriendElement,
+  FriendRequestElement,
+  UserElement,
+} from "../../components/UserElement";
+import {
+  FetchFriendRequests,
+  FetchFriends,
+  FetchUsers,
+} from "../../redux/slices/app";
 
-
+const Transition = React.forwardRef(function Transition(props, ref) {
+  return <Slide direction="up" ref={ref} {...props} />;
+});
 
 const UsersList = () => {
-    const dispatch = useDispatch();
-  
-    const { users } = useSelector((state) => state.app);
-  
-    useEffect(() => {
-      dispatch(FetchUsers());
-    }, []);
-  
-    return (
-      <>
-        {users.map((item, index) => {
-          return <UserElement key={index} {...item} />;
-        })}
-      </>
-    );
-  };
-  
+  const dispatch = useDispatch();
+
+  const { users } = useSelector((state) => state.app);
+
+  useEffect(() => {
+    dispatch(FetchUsers());
+  }, []);
+
+  return (
+    <>
+      {users.map((item, index) => {
+        return <UserElement key={index} {...item} />;
+      })}
+    </>
+  );
+};
+
 const FriendsList = () => {
-    const dispatch = useDispatch();
-  
-    const { friends } = useSelector((state) => state.app);
-  
-    useEffect(() => {
-      dispatch(FetchFriends());
-    }, []);
-  
-    return (
-      <>
-        {friends.map((el, idx) => {
-          return <FriendElement key={idx} {...el} />;
-        })}
-      </>
-    );
-  };
-  
-  const RequestsList = () => {
-    const dispatch = useDispatch();
-  
-    const { friendRequests } = useSelector((state) => state.app);
-  
-    useEffect(() => {
-      dispatch(FetchFriendRequests());
-    }, []);
-  
-    return (
-      <>
-        {friendRequests.map((el, idx) => {
-          return <FriendRequestElement key={idx} {...el.sender} id={el._id} />;
-        })}
-      </>
-    );
-  };
-  
+  const dispatch = useDispatch();
+
+  const { friends } = useSelector((state) => state.app);
+
+  useEffect(() => {
+    dispatch(FetchFriends());
+  }, []);
+
+  return (
+    <>
+      {friends.map((item, index) => {
+        return <FriendElement key={index} {...item} />;
+      })}
+    </>
+  );
+};
+
+const RequestsList = () => {
+  const dispatch = useDispatch();
+
+  const { friendRequests } = useSelector((state) => state.app);
+
+  useEffect(() => {
+    dispatch(FetchFriendRequests());
+  }, []);
+
+  return (
+    <>
+      {friendRequests.map((item, index) => {
+        return <FriendRequestElement key={index} {...item.sender} id={item._id} />;
+      })}
+    </>
+  );
+};
+
 const Friends = ({ open, handleClose }) => {
   const [value, setValue] = useState(0);
 
@@ -72,6 +83,7 @@ const Friends = ({ open, handleClose }) => {
         maxWidth="xs"
         open={open}
         keepMounted
+        TransitionComponent={Transition}
         onClose={handleClose}
         sx={{ p: 4 }}
       >
