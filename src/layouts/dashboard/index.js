@@ -12,7 +12,7 @@ const DashboardLayout = () => {
 
   const user_id = window.localStorage.getItem("user_id");
 
-  console.log(socket);
+  console.log(socket,"socket");
 
   useEffect(() => {
     if (isLoggedIn) {

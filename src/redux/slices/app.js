@@ -5,6 +5,8 @@ const initialState = {
     open: false,
     type: "CONTACT",
   },
+  isLoggedIn: true,
+  tab: 0,
   snackbar: {
     open: null,
     message: null,
@@ -13,6 +15,7 @@ const initialState = {
   users: [],
   friends: [],
   friendRequests: [],
+  socket: null,
 };
 const slice = createSlice({
   name: "app",
@@ -23,6 +26,9 @@ const slice = createSlice({
     },
     updateSidebarType(state, action) {
       state.sidebar.type = action.payload.type;
+    },
+    updateTab(state, action) {
+      state.tab = action.payload.tab;
     },
     openSnackBar(state, action) {
       state.snackbar.open = true;
@@ -42,6 +48,9 @@ const slice = createSlice({
     updateFriendRequests(state, action) {
       state.friendRequests = action.payload.requests;
     },
+    updateSocket(state, action) {
+      state.socket = action.payload.socket;
+    }
   },
 });
 
@@ -79,12 +88,17 @@ export function UpdateSidebarType(type) {
     );
   };
 }
+export function UpdateTab(tab) {
+  return async (dispatch, getState) => {
+    dispatch(slice.actions.updateTab({ tab }));
+  };
+}
 
 export function FetchUsers() {
   return async (dispatch, getState) => {
     await axios
       .get(
-        "/user/get-users",
+        "/user/get-all",
 
         {
           headers: {
@@ -147,4 +161,10 @@ export function FetchFriendRequests() {
         console.log(err);
       });
   };
+}
+
+export function updateSocket(socket) {
+  return async (dispatch, getState) => {
+    dispatch(slice.actions.updateSocket({socket}));
+  }
 }

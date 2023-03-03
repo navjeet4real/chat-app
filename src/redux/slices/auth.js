@@ -58,6 +58,7 @@ export function LoginUser(formValues) {
             token: response.data.token,
           })
         );
+        window.localStorage.setItem("user_id", response.data.user_id);
         dispatch(ShowSnackBar({severity: "success", message: response.data.message}))
         dispatch(
           slice.actions.updateIsLoading({ isLoading: false, error: false })
@@ -75,6 +76,7 @@ export function LoginUser(formValues) {
 
 export function LogoutUser() {
   return async (dispatch, getState) => {
+    window.localStorage.removeItem("user_id");
     dispatch(slice.actions.signOut());
     dispatch(ShowSnackBar({severity: "success", message: "Logged out successfully!"}))
   };
