@@ -16,6 +16,8 @@ const initialState = {
   friends: [],
   friendRequests: [],
   socket: null,
+  chat_type: null,
+  room_id: null,
 };
 const slice = createSlice({
   name: "app",
@@ -50,6 +52,10 @@ const slice = createSlice({
     },
     updateSocket(state, action) {
       state.socket = action.payload.socket;
+    },
+    selectConversation(state, action) {
+      state.chat_type = "individual";
+      state.room_id = action.payload.room_id
     }
   },
 });
@@ -166,5 +172,11 @@ export function FetchFriendRequests() {
 export function updateSocket(socket) {
   return async (dispatch, getState) => {
     dispatch(slice.actions.updateSocket({socket}));
+  }
+}
+
+export const SelectConversation = ({room_id}) => {
+  return(dispatch,getState) => {
+    dispatch(slice.actions.selectConversation({room_id}));
   }
 }

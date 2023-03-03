@@ -1,4 +1,5 @@
 import { useTheme } from "@emotion/react";
+import { Typography } from "@mui/material";
 import { Stack, Box } from "@mui/system";
 import React from "react";
 import { useSelector } from "react-redux";
@@ -7,10 +8,12 @@ import Conversation from "../../components/Conversation/Index";
 import SharedMessages from "../../components/SharedMessages";
 import StaredMessage from "../../components/StaredMessage";
 import Chats from "./Chats";
+import NoChatSVG from "../../assets/Illustration/NoChat";
+
 
 const GeneralApp = () => {
   const theme = useTheme();
-  const { sidebar } = useSelector((store) => store.app);
+  const { sidebar, room_id, chat_type } = useSelector((store) => store.app);
   return (
     <>
       <Stack direction={"row"} sx={{ width: "100%" }}>
@@ -25,7 +28,19 @@ const GeneralApp = () => {
                 : theme.palette.background.default,
           }}
         >
-          <Conversation />
+          {room_id !== null && chat_type === "individual" ? <Conversation /> : 
+          
+          <>
+          <Stack spacing={2} sx={{height: "100%", width: "100%"}} alignItems="center" justifyContent={"center"}>
+            <NoChatSVG />
+            <Typography variant="subtitle2">
+              Select a conversation or start new one
+            </Typography>
+
+          </Stack>
+          </>
+          
+          }
         </Box>
         {sidebar.open &&
           (() => {

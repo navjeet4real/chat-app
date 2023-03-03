@@ -115,6 +115,7 @@ const FriendRequestElement = ({
   img,
   firstName,
   lastName,
+  _id,
   incoming,
   missed,
   online,
@@ -160,8 +161,7 @@ const FriendRequestElement = ({
         <Stack direction={"row"} spacing={2} alignItems={"center"}>
           <Button
             onClick={() => {
-              //  emit "accept_request" event
-              // socket.emit("accept_request", { request_id: id });
+               socket.emit( "accept_request",{request_id: id})
             }}
           >
             Accept Request
