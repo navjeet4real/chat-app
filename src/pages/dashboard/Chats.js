@@ -31,7 +31,7 @@ const user_id = window.localStorage.getItem("user_id");
 const Chats = () => {
   const [openDialog, setOpenDialog] = useState(false);
   const theme = useTheme();
-  // const {conversations} = useSelector((state) => state.conversations.direct_chat)
+  const {conversations} = useSelector((state) => state.conversations.direct_chat)
 
   const handleCloseDialog = () => {
     setOpenDialog(false);
@@ -113,9 +113,9 @@ const Chats = () => {
                 <Typography variant="subtitle2" sx={{ color: "#676767" }}>
                   All Chats
                 </Typography>
-                {/* {conversations.filter((item) => !item.pinned).map((item) => {
+                {conversations && conversations.filter((item) => !item.pinned).map((item) => {
                   return <ChatElement {...item} />;
-                })} */}
+                })}
               </Stack>
             </SimpleBarStyle>
           </Stack>
