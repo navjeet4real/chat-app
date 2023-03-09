@@ -5,6 +5,8 @@ import { ShowSnackBar } from "./app";
 const initialState = {
   isLoggedIn: false,
   token: "",
+  user: null,
+  user_id: null,
   email: "",
   error: false,
   isLoading: false,
@@ -21,10 +23,12 @@ const slice = createSlice({
     logIn(state, action) {
       state.isLoggedIn = action.payload.isLoggedIn;
       state.token = action.payload.token;
+      state.user_id = action.payload.user_id;
     },
     signOut(state, action) {
       state.isLoggedIn = false;
       state.token = "";
+      state.user_id = null;
     },
     updateRegisterEmail(state, action) {
       state.email = action.payload.email;
@@ -38,6 +42,9 @@ export default slice.reducer;
 export function LoginUser(formValues) {
   console.log(formValues, "formValues");
   return async (dispatch, getState) => {
+
+    dispatch(slice.actions.updateIsLoading({ isLoading: true, error: false }));
+
     await axios
       .post(
         "/auth/login",
@@ -56,6 +63,7 @@ export function LoginUser(formValues) {
           slice.actions.logIn({
             isLoggedIn: true,
             token: response.data.token,
+            user_id: response.data.user_id,
           })
         );
         window.localStorage.setItem("user_id", response.data.user_id);
@@ -190,6 +198,7 @@ export function VerifyEmail(formValues) {
             token: response.data.token,
           })
         );
+        window.localStorage.setItem("user_id", response.data.user_id)
       })
       .catch((error) => {
         console.log(error);

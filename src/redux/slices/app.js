@@ -104,7 +104,7 @@ export function FetchUsers() {
   return async (dispatch, getState) => {
     await axios
       .get(
-        "/user/get-all",
+        "/user/get_users",
 
         {
           headers: {
