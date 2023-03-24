@@ -10,7 +10,6 @@ import {
 } from "@mui/material";
 import { styled, useTheme } from "@mui/material/styles";
 import { Chat } from "phosphor-react";
-import { useSelector } from "react-redux";
 import { socket } from "../socket";
 
 const user_id = window.localStorage.getItem("user_id")

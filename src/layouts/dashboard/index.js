@@ -1,5 +1,5 @@
-import { Stack } from "@mui/material";
 import React, { useEffect } from "react";
+import { Stack } from "@mui/material";
 import { useSelector, useDispatch } from "react-redux";
 import { Navigate, Outlet } from "react-router-dom";
 import SideBar from "./SideBar";
@@ -10,10 +10,11 @@ import {
   UpdateDirectConversation,
   AddDirectMessage,
 } from "../../redux/slices/conversation";
+import useResponsive from "../../hooks/useResponsive";
 
 const DashboardLayout = () => {
+  const isDesktop = useResponsive("up", "md");
   const { isLoggedIn } = useSelector((state) => state.auth);
-
   // const { conversations, current_conversation } = useSelector(
   //   (state) => state.conversations.direct_chat
   // );
@@ -115,7 +116,6 @@ const DashboardLayout = () => {
       socket?.off("new_friend_request");
       socket?.off("request_accepted");
       socket?.off("request_sent");
-      socket?.off("open_chat");
       socket?.off("start_chat");
       socket?.off("new_message");
     };

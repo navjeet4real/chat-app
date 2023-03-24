@@ -170,7 +170,7 @@ const SideBar = () => {
             onChange={() => {
               onToggleMode();
             }}
-            defaultChecked
+            defaultChecked={theme.palette.mode === "dark"}
           />
           <Avatar
             id="basic-button"

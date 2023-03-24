@@ -1,7 +1,6 @@
-import { useTheme } from "@emotion/react";
-import { Typography } from "@mui/material";
-import { Stack, Box } from "@mui/system";
 import React from "react";
+import { useTheme } from "@emotion/react";
+import { Stack, Box, Typography } from "@mui/material";
 import { useSelector } from "react-redux";
 import Contact from "../../components/Contact";
 import Conversation from "../../components/Conversation/Index";
@@ -9,8 +8,12 @@ import SharedMessages from "../../components/SharedMessages";
 import StaredMessage from "../../components/StaredMessage";
 import Chats from "./Chats";
 import NoChatSVG from "../../assets/Illustration/NoChat";
+import { Link, useSearchParams } from "react-router-dom";
 
 const GeneralApp = () => {
+  const [searchParams] = useSearchParams();
+
+
   const theme = useTheme();
   const { sidebar, room_id, chat_type } = useSelector((store) => store.app);
   return (
@@ -25,6 +28,11 @@ const GeneralApp = () => {
               theme.palette.mode === "light"
                 ? "#F0F4FA"
                 : theme.palette.background.default,
+            borderBottom:
+              searchParams.get("type") === "individual-chat" &&
+                searchParams.get("id")
+                ? "0px"
+                : "6px solid #0162C4",
           }}
         >
           {room_id !== null && chat_type === "individual" ? (
@@ -39,7 +47,16 @@ const GeneralApp = () => {
               >
                 <NoChatSVG />
                 <Typography variant="subtitle2">
-                  Select a conversation or start new one
+                  Select a conversation or start a{" "}
+                  <Link
+                  style={{
+                    color: theme.palette.primary.main,
+                    textDecoration: "none",
+                  }}
+                  to="/"
+                >
+                  new one
+                </Link>
                 </Typography>
               </Stack>
             </>

@@ -16,18 +16,7 @@ RHFCodes.propTypes = {
 
 export default function RHFCodes({ keyName = '', inputs = [], ...other }) {
   const codesRef = useRef(null);
-
-  const { control, setValue } = useFormContext();
-
-  const handlePaste = (event) => {
-    let data = event.clipboardData.getData('text');
-
-    data = data.split('');
-
-    inputs.map((input, index) => setValue(input, data[index]));
-
-    event.preventDefault();
-  };
+  const { control } = useFormContext();
 
   const handleChangeWithNextField = (event, handleChange) => {
     const { maxLength, value, name } = event.target;
@@ -37,19 +26,14 @@ export default function RHFCodes({ keyName = '', inputs = [], ...other }) {
     const fieldIntIndex = Number(fieldIndex);
 
     const nextfield = document.querySelector(`input[name=${keyName}${fieldIntIndex + 1}]`);
-
     if (value.length > maxLength) {
       event.target.value = value[0];
     }
-
     if (value.length >= maxLength && fieldIntIndex < 6 && nextfield !== null) {
       nextfield.focus();
     }
-
     handleChange(event);
   };
-
-  useEventListener('paste', handlePaste, codesRef);
 
   return (
     <Stack direction="row" spacing={2} justifyContent="center" ref={codesRef}>

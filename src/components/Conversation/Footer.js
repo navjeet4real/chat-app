@@ -74,7 +74,7 @@ const ChatInput = ({ setOpenPicker }) => {
                     top: -item.y,
                     backgroundColor: item.color,
                   }}
-                    aria-lable="add"
+                    // aria-lable="add"
                   >
                     {item.icon}
                   </Fab>

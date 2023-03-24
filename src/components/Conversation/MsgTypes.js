@@ -1,17 +1,18 @@
 import React, { useState } from "react";
-import { useTheme } from "@emotion/react";
 import {
   Box,
   Divider,
   Typography,
   Stack,
-  Link,
   IconButton,
   Menu,
   MenuItem,
 } from "@mui/material";
 import { DotsThreeVertical, DownloadSimple, Image } from "phosphor-react";
 import { Message_options } from "../../data";
+import { useTheme, alpha } from "@mui/material/styles";
+import Embed from "react-embed";
+
 
 const DocMsg = ({ item, menu }) => {
   const theme = useTheme();
@@ -19,10 +20,11 @@ const DocMsg = ({ item, menu }) => {
   return (
     <Stack direction={"row"} justifyContent={item.incoming ? "start" : "end"}>
       <Box
-        p={1.5}
+        px={1.5}
+        py={1.5}
         sx={{
           backgroundColor: item.incoming
-            ? theme.palette.background.default
+            ? alpha(theme.palette.background.default, 1)
             : theme.palette.primary.main,
           borderRadius: 1.5,
           width: "max-content",
@@ -47,7 +49,7 @@ const DocMsg = ({ item, menu }) => {
           </Stack>
           <Typography
             variant="body2"
-            sx={{ color: item.incoming ? theme.palette.text : "#fff" }}
+            color={item.incoming ? theme.palette.text : "#fff"} 
           >
             {item.message}
           </Typography>
@@ -67,7 +69,7 @@ const LinkMsg = ({ item, menu }) => {
         p={1.5}
         sx={{
           backgroundColor: item.incoming
-            ? theme.palette.background.default
+            ? alpha(theme.palette.background.default, 1)
             : theme.palette.primary.main,
           borderRadius: 1.5,
           width: "max-content",
@@ -84,29 +86,21 @@ const LinkMsg = ({ item, menu }) => {
               borderRadius: 1,
             }}
           >
-            <img
-              src={item.preview}
-              alt={item.message}
-              style={{ maxHeight: 210, borderRadius: "10px" }}
-            />
-            <Stack spacing={2}>
-              <Typography variant="subtitle2">Creating chat app</Typography>
-              <Typography
-                variant="subtitle2"
-                component={Link}
-                sx={{ color: theme.palette.primary.main }}
-                to=""
-              >
-                www.youtube.com
-              </Typography>
+            <Stack direction={"column"} spacing={2}>
+              <Embed
+                width="300px"
+                isDark
+                url={`https://youtu.be/xoWxBR34qLE`}
+              />
             </Stack>
-            <Typography
-              variant="body2"
-              color={item.incoming ? theme.palette.text : "#fff"}
-            >
-              {item.message}
-            </Typography>
           </Stack>
+
+          <Typography
+            variant="body2"
+            color={item.incoming ? theme.palette.text : "#fff"}
+          >
+            <div dangerouslySetInnerHTML={{ __html: item.message }}></div>
+          </Typography>
         </Stack>
       </Box>
       {menu && <MessageOptions />}
@@ -119,10 +113,11 @@ const ReplyMsg = ({ item, menu }) => {
   return (
     <Stack direction={"row"} justifyContent={item.incoming ? "start" : "end"}>
       <Box
-        p={1.5}
+        px={1.5}
+        py={1.5}
         sx={{
           backgroundColor: item.incoming
-            ? theme.palette.background.default
+            ? alpha(theme.palette.background.paper, 1)
             : theme.palette.primary.main,
           borderRadius: 1.5,
           width: "max-content",
@@ -135,7 +130,7 @@ const ReplyMsg = ({ item, menu }) => {
             spacing={3}
             alignItems="center"
             sx={{
-              backgroundColor: theme.palette.background.paper,
+              backgroundColor: alpha(theme.palette.background.paper, 1),
               borderRadius: 1,
             }}
           >
@@ -161,10 +156,11 @@ const MediaMsg = ({ item, menu }) => {
   return (
     <Stack direction={"row"} justifyContent={item.incoming ? "start" : "end"}>
       <Box
-        p={1.5}
+        px={1.5}
+        py={1.5}
         sx={{
           backgroundColor: item.incoming
-            ? theme.palette.background.default
+            ? alpha(theme.palette.background.default, 1)
             : theme.palette.primary.main,
           borderRadius: 1.5,
           width: "max-content",
@@ -198,7 +194,7 @@ const TextMsg = ({ item, menu }) => {
         p={1.5}
         sx={{
           backgroundColor: item.incoming
-            ? theme.palette.background.default
+            ? alpha(theme.palette.background.default, 1)
             : theme.palette.primary.main,
           borderRadius: 1.5,
           width: "max-content",
@@ -260,7 +256,7 @@ const MessageOptions = () => {
       >
         <Stack spacing={1} px={1}>
           {Message_options.map((item) => (
-            <MenuItem onClick={handleClick}>{item.title}</MenuItem>
+            <MenuItem onClick={handleClose}>{item.title}</MenuItem>
           ))}
         </Stack>
       </Menu>

@@ -87,6 +87,7 @@ const Friends = ({ open, handleClose }) => {
         TransitionComponent={Transition}
         onClose={handleClose}
         sx={{ p: 4 }}
+        aria-describedby="alert-dialog-slide-description"
       >
         <Stack p={2} sx={{ width: "100%" }}>
           <Tabs value={value} onChange={handleChange} centered>

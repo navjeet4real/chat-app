@@ -1,4 +1,5 @@
-import { useTheme } from "@emotion/react";
+import React,{useState} from "react";
+import { useTheme } from "@mui/material/styles";
 import { faker } from "@faker-js/faker";
 import {
   Box,
@@ -9,22 +10,25 @@ import {
   Tabs,
   Typography,
 } from "@mui/material";
-import { CaretLeft } from "phosphor-react";
-import React from "react";
+import { ArrowLeft } from "phosphor-react";
 import { useDispatch } from "react-redux";
 import { SHARED_DOCS, SHARED_LINKS } from "../data";
 import { UpdateSidebarType } from "../redux/slices/app";
 import { LinkMsg, DocMsg } from "./Conversation/MsgTypes";
+import useResponsive from "../hooks/useResponsive";
+
+
 const SharedMessages = () => {
   const theme = useTheme();
   const dispatch = useDispatch();
-  const [value, setValue] = React.useState(0);
+  const [value, setValue] = useState(0);
+  const isDesktop = useResponsive("up", "md");
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
   return (
-    <Box sx={{ width: 320, height: "100vh" }}>
+    <Box sx={{ width: !isDesktop ? "100vw" : 320, maxHeight: "100vh" }}>
       <Stack sx={{ height: "100%" }}>
         <Box
           sx={{
@@ -48,7 +52,7 @@ const SharedMessages = () => {
                 dispatch(UpdateSidebarType("CONTACT"));
               }}
             >
-              <CaretLeft />
+              <ArrowLeft />
             </IconButton>
             <Typography variant="subtitle2">Shared Messages</Typography>
           </Stack>
@@ -57,7 +61,7 @@ const SharedMessages = () => {
           value={value}
           onChange={handleChange}
           centered
-          sx={{ px: 2, pt: 2 }}
+          // sx={{ px: 2, pt: 2 }}
         >
           <Tab label="Media" />
           <Tab label="Links" />

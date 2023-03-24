@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   Avatar,
   Badge,
@@ -15,8 +15,11 @@ import {
 import { useTheme } from "@mui/material/styles";
 import { CaretDown, MagnifyingGlass, Phone, VideoCamera } from "phosphor-react";
 import { faker } from "@faker-js/faker";
-import { useSearchParams } from "react-router-dom";
 import useResponsive from "../../hooks/useResponsive";
+import { ToggleSidebar } from "../../redux/slices/app";
+import { useDispatch } from "react-redux";
+import CallDialog from "../../sections/dashboard/CallDialog";
+
 
 const StyledBadge = styled(Badge)(({ theme }) => ({
   "& .MuiBadge-badge": {
@@ -63,12 +66,12 @@ const Conversation_Menu = [
 ];
 
 const ChatHeader = () => {
+  const dispatch = useDispatch();
   const isMobile = useResponsive("between", "md", "xs", "sm");
-  const [searchParams, setSearchParams] = useSearchParams();
   const theme = useTheme();
 
-  const [conversationMenuAnchorEl, setConversationMenuAnchorEl] =
-    React.useState(null);
+  const [openVoiceDialog, setOpenVoiceDialog] = useState(false);
+  const [conversationMenuAnchorEl, setConversationMenuAnchorEl] = useState(null);
   const openConversationMenu = Boolean(conversationMenuAnchorEl);
   const handleClickConversationMenu = (event) => {
     setConversationMenuAnchorEl(event.currentTarget);
@@ -77,7 +80,15 @@ const ChatHeader = () => {
     setConversationMenuAnchorEl(null);
   };
 
+  const handleOpenVoiceDialog = () => {
+    setOpenVoiceDialog(true);
+  };
+
+  const handleCloseVoiceDialog = () => {
+    setOpenVoiceDialog(false);
+  };
   return (
+   <>
     <Box
       p={2}
       width={"100%"}
@@ -95,8 +106,7 @@ const ChatHeader = () => {
       >
         <Stack
           onClick={() => {
-            searchParams.set("open", true);
-            setSearchParams(searchParams);
+            dispatch(ToggleSidebar());
           }}
           spacing={2}
           direction="row"
@@ -122,7 +132,12 @@ const ChatHeader = () => {
           <IconButton>
             <VideoCamera />
           </IconButton>
-          <IconButton>
+          <IconButton
+           onClick={() => {
+            // open call Dialog Box
+            handleOpenVoiceDialog();
+          }}
+          >
             <Phone />
           </IconButton>
           {!isMobile && (
@@ -164,7 +179,7 @@ const ChatHeader = () => {
           >
             <Box p={1}>
               <Stack spacing={1}>
-                {Conversation_Menu.map((el) => (
+                {Conversation_Menu.map((item) => (
                   <MenuItem onClick={handleCloseConversationMenu}>
                     <Stack
                       sx={{ minWidth: 100 }}
@@ -172,7 +187,7 @@ const ChatHeader = () => {
                       alignItems={"center"}
                       justifyContent="space-between"
                     >
-                      <span>{el.title}</span>
+                      <span>{item.title}</span>
                     </Stack>{" "}
                   </MenuItem>
                 ))}
@@ -182,6 +197,16 @@ const ChatHeader = () => {
         </Stack>
       </Stack>
     </Box>
+
+    {openVoiceDialog && (
+        <CallDialog
+          open={openVoiceDialog}
+          handleClose={handleCloseVoiceDialog}
+        />
+      )}
+   </>
+
+    
   );
 };
 
