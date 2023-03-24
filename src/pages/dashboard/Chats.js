@@ -24,11 +24,13 @@ import {
 import ChatElement from "../../components/ChatElement";
 import Friends from "../../sections/main/Friends";
 import { socket } from "../../socket";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { FetchDirectConversations } from "../../redux/slices/conversation";
 
 const user_id = window.localStorage.getItem("user_id");
 
 const Chats = () => {
+  const dispatch = useDispatch();
   const [openDialog, setOpenDialog] = useState(false);
   const theme = useTheme();
   // const {conversations} = useSelector((state) => state.conversations.direct_chat)
@@ -43,7 +45,7 @@ const Chats = () => {
   useEffect(() => {
     socket.emit("get_direct_conversations",{user_id},(data) => {
       // data => list of conversations
-
+      dispatch(FetchDirectConversations({ conversations: data }));
     })
   },[])
   return (

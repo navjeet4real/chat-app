@@ -55,8 +55,6 @@ const UserElement = ({
   img,
   firstName,
   lastName,
-  incoming,
-  missed,
   online,
   _id,
 }) => {
@@ -117,7 +115,6 @@ const FriendRequestElement = ({
   img,
   firstName,
   lastName,
-  _id,
   incoming,
   missed,
   online,

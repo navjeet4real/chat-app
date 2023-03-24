@@ -18,6 +18,7 @@ import AntSwitch from "../../components/AntSwitch";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { LogoutUser } from "../../redux/slices/auth";
+import { socket } from "../../socket";
 
 const getPath = (index) => {
   switch (index) {
@@ -62,6 +63,8 @@ const SideBar = () => {
   const handleClose = () => {
     setAnchorEl(null);
   };
+  
+  const user_id = window.localStorage.getItem("user_id");
   return (
     <Box
       p={2}
@@ -206,6 +209,7 @@ const SideBar = () => {
                     onClick={() => {
                       if (index === 2) {
                         dispatch(LogoutUser());
+                        socket.emit("end", {user_id});
                       } else {
                         navigate(getMenuPath(index));
                       }
