@@ -31,7 +31,7 @@ const user_id = window.localStorage.getItem("user_id");
 const Chats = () => {
   const [openDialog, setOpenDialog] = useState(false);
   const theme = useTheme();
-  const {conversations} = useSelector((state) => state.conversations.direct_chat)
+  // const {conversations} = useSelector((state) => state.conversations.direct_chat)
 
   const handleCloseDialog = () => {
     setOpenDialog(false);
@@ -40,12 +40,12 @@ const Chats = () => {
     setOpenDialog(true);
   };
 
-  useEffect(() => {
-    socket.emit("get_direct_conversations",{user_id},(data) => {
-      // data => list of conversations
+  // useEffect(() => {
+  //   socket.emit("get_direct_conversations",{user_id},(data) => {
+  //     // data => list of conversations
 
-    })
-  },[])
+  //   })
+  // },[])
   return (
     <>
       <Box
@@ -104,18 +104,18 @@ const Chats = () => {
           >
             <SimpleBarStyle timeout={500} clickOnTrack={false}>
               <Stack spacing={2.4}>
-                {/* <Typography variant="subtitle2" sx={{ color: "#676767" }}>
+                <Typography variant="subtitle2" sx={{ color: "#676767" }}>
                   Pinned
                 </Typography>
                 {ChatList.filter((item) => item.pinned).map((item) => {
                   return <ChatElement {...item} />;
-                })} */}
+                })}
                 <Typography variant="subtitle2" sx={{ color: "#676767" }}>
                   All Chats
                 </Typography>
-                {conversations && conversations.filter((item) => !item.pinned).map((item) => {
+                {/* {conversations && conversations.filter((item) => !item.pinned).map((item) => {
                   return <ChatElement {...item} />;
-                })}
+                })} */}
               </Stack>
             </SimpleBarStyle>
           </Stack>

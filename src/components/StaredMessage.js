@@ -2,17 +2,15 @@ import React from "react";
 import { useTheme } from "@emotion/react";
 import {
   Box,
-  Grid,
   IconButton,
   Stack,
-  Tab,
-  Tabs,
   Typography,
 } from "@mui/material";
 import { useDispatch } from "react-redux";
 import { UpdateSidebarType } from "../redux/slices/app";
 import { CaretLeft } from "phosphor-react";
 import Message from "./Conversation/Message";
+
 const StaredMessage = () => {
   const theme = useTheme();
   const dispatch = useDispatch();

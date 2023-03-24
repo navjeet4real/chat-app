@@ -55,28 +55,28 @@ const DashboardLayout = () => {
         dispatch(ShowSnackBar({ severity: "success", message: data.message }));
       });
 
-      socket.on("start_chat", (data) => {
-        console.log(data, "start_chat data");
-        const existing_conversation = conversations.find(
-          (item) => item.id === data._id
-        );
+      // socket.on("start_chat", (data) => {
+      //   console.log(data, "start_chat data");
+      //   const existing_conversation = conversations.find(
+      //     (item) => item.id === data._id
+      //   );
 
-        if (existing_conversation) {
-          dispatch(
-            UpdateDirectConversation({
-              conversation: data,
-            })
-          );
-        } else {
-          // add direct convo
-          dispatch(
-            AddDirectConversation({
-              conversation: data,
-            })
-          );
-        }
-        // dispatch(SelectConversation({ room_id: data._id }));
-      });
+      //   if (existing_conversation) {
+      //     dispatch(
+      //       UpdateDirectConversation({
+      //         conversation: data,
+      //       })
+      //     );
+      //   } else {
+      //     // add direct convo
+      //     dispatch(
+      //       AddDirectConversation({
+      //         conversation: data,
+      //       })
+      //     );
+      //   }
+      //   // dispatch(SelectConversation({ room_id: data._id }));
+      // });
     }
 
     // Remove event listener on component unmount
