@@ -28,6 +28,8 @@ export default function Router() {
         { path: "register", element: <RegisterPage /> },
         { path: "forgot", element: <ForgotPage /> },
         { path: "new-password", element: <NewPasswordPage /> },
+        { path: "verify-otp", element: <VerifyOTP /> },
+        
       ]
     },
     {
@@ -66,6 +68,9 @@ const ForgotPage = Loadable(
 );
 const NewPasswordPage = Loadable(
   lazy(() => import("../pages/auth/NewPassword")),
+);
+const VerifyOTP = Loadable(
+  lazy(() => import("../pages/auth/Verify")),
 );
 const GroupPage = Loadable(
   lazy(() => import("../pages/dashboard/Group")),

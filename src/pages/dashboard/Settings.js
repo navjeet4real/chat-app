@@ -23,49 +23,49 @@ const Settings = () => {
       key: 0,
       icon: <Bell size={20} />,
       title: "Notifications",
-      onclick: () => {},
+      onClick: () => {},
     },
     {
       key: 1,
       icon: <Lock size={20} />,
       title: "Privacy",
-      onclick: () => {},
+      onClick: () => {},
     },
     {
       key: 2,
       icon: <Key size={20} />,
       title: "Security",
-      onclick: () => {},
+      onClick: () => {},
     },
     {
       key: 3,
       icon: <PencilCircle size={20} />,
       title: "Theme",
-      //   onclick: handleOpenTheme,
+      //   onClick: handleOpenTheme,
     },
     {
       key: 4,
       icon: <Image size={20} />,
       title: "Chat Wallpaper",
-      onclick: () => {},
+      onClick: () => {},
     },
     {
       key: 5,
       icon: <Note size={20} />,
       title: "Request Account Info",
-      onclick: () => {},
+      onClick: () => {},
     },
     {
       key: 6,
       icon: <Keyboard size={20} />,
       title: "Keyboard Shortcuts",
-      //   onclick: handleOpenShortcuts,
+      //   onClick: handleOpenShortcuts,
     },
     {
       key: 7,
       icon: <Info size={20} />,
       title: "Help",
-      onclick: () => {},
+      onClick: () => {},
     },
   ];
 
@@ -108,26 +108,25 @@ const Settings = () => {
             </Stack>
           </Stack>
           <Stack spacing={4}>
-            {list.map(({ key, icon, title, onclick }) => (
+            {list.map(({ key, icon, title, onClick }, index) => (
               <>
                 <Stack
+                  key={index}
                   direction={"row"}
                   spacing={3}
                   justifyContent={"flex-start"}
                   sx={{ cursor: "pointer" }}
-                  onclick={onclick}
+                  onClick={onClick}
                 >
                   <Stack direction={"row"} spacing={2} alignItems="center">
                     {icon}
                     <Typography variant="body2">{title}</Typography>
                   </Stack>
-                   <Divider  />
+                  <Divider />
                 </Stack>
               </>
             ))}
           </Stack>
-
-         
         </Stack>
       </Box>
       {/* right panel */}

@@ -6,11 +6,11 @@ import { TextField } from "@mui/material";
 RHFTextField.propTypes = {
     name: PropTypes.string,
     label: PropTypes.string,
-    helperText: PropTypes.node
+    helpertext: PropTypes.node
 }
 
 
-export default function RHFTextField({ name, helperText, ...other }) {
+export default function RHFTextField({ name, helpertext, ...other }) {
   const { control } = useFormContext();
 
   return (
@@ -23,7 +23,7 @@ export default function RHFTextField({ name, helperText, ...other }) {
             {...field}
             fullWidth
             error={!!error}
-            helperText={error ? error.message : helperText}
+            helpertext={error ? error.message : helpertext}
             {...other}
           />
         )}

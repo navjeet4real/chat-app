@@ -81,14 +81,14 @@ const Group = () => {
                   <Typography variant="subtitle2" sx={{ color: "#676767" }}>
                     Pinned
                   </Typography>
-                  {ChatList.filter((item) => item.pinned).map((item) => {
-                    return <ChatElement {...item} />;
+                  {ChatList.filter((item) => item.pinned).map((item, index) => {
+                    return <ChatElement key={index} {...item} />;
                   })}
                   <Typography variant="subtitle2" sx={{ color: "#676767" }}>
                     All Chats
                   </Typography>
-                  {ChatList.filter((item) => !item.pinned).map((item) => {
-                    return <ChatElement {...item} />;
+                  {ChatList.filter((item) => !item.pinned).map((item, index) => {
+                    return <ChatElement key={index} {...item} />;
                   })}
                 </Stack>
               </SimpleBarStyle>

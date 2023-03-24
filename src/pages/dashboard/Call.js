@@ -80,8 +80,8 @@ const Call = () => {
               <SimpleBarStyle timeout={500} clickOnTrack={false}>
                 <Stack spacing={2.4}>
                   {/* call logs  */}
-                  {CallLogs.map((item) => (
-                    <CallLogElement {...item} />
+                  {CallLogs.map((item, index) => (
+                    <CallLogElement key={index} {...item} />
                   ))}
                 </Stack>
               </SimpleBarStyle>

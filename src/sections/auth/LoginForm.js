@@ -41,7 +41,7 @@ const LoginForm = () => {
     reset,
     setError,
     handleSubmit,
-    formState: { errors, isSubmitting, isSubmitSuccessful },
+    formState: { errors },
   } = methods;
 
   const onSubmit = async (data) => {
@@ -71,7 +71,7 @@ const LoginForm = () => {
           type={showPassword ? "text" : "password"}
           InputProps={{
             endAdornment: (
-              <InputAdornment>
+              <InputAdornment position="end"> 
                 <IconButton
                   onClick={() => {
                     setShowPassword(!showPassword);

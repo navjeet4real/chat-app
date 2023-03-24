@@ -15,13 +15,13 @@ import {
 import { RHFTextField } from "../../components/hook-form";
 import { Eye, EyeSlash } from "phosphor-react";
 import { useTheme } from "@emotion/react";
-import { Link as RouterLink, useSearchParams } from "react-router-dom";
+import { useSearchParams } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { NewPassword } from "../../redux/slices/auth";
 
 const NewPasswordForm = () => {
-  const {quesryParameters} = useSearchParams();
-  const dispatch = useDispatch();
+  const [queryParameters] = useSearchParams();
+  const dispatch = useDispatch(); 
   const [showPassword, setShowPassword] = useState(false);
   const theme = useTheme();
   const NewPasswordSchema = Yup.object().shape({
@@ -30,7 +30,7 @@ const NewPasswordForm = () => {
       .required("Password is required"),
     passwordConfirm: Yup.string()
       .required("Password is required")
-      .oneOf([Yup.ref("newPassword"), null], "Password must match"),
+      .oneOf([Yup.ref("password"), null], "Password must match"),
   });
 
   const defaultValues = {
@@ -51,7 +51,7 @@ const NewPasswordForm = () => {
 
   const onSubmit = async (data) => {
     try {
-      dispatch(NewPassword({...data, token: quesryParameters.get("token")}))
+      dispatch(NewPassword({...data, token: queryParameters.get("token")}))
     } catch (error) {
       console.error(error);
       reset();
@@ -74,7 +74,7 @@ const NewPasswordForm = () => {
           type={showPassword ? "text" : "password"}
           InputProps={{
             endAdornment: (
-              <InputAdornment>
+              <InputAdornment position="end">
                 <IconButton
                   onClick={() => {
                     setShowPassword(!showPassword);
@@ -92,7 +92,7 @@ const NewPasswordForm = () => {
           type={showPassword ? "text" : "password"}
           InputProps={{
             endAdornment: (
-              <InputAdornment>
+              <InputAdornment position="end">
                 <IconButton
                   onClick={() => {
                     setShowPassword(!showPassword);

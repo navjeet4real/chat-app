@@ -9,7 +9,7 @@ export default function ControlLabel(theme) {
         },
       },
     },
-    MuiFormHelperText: {
+    MuiFormhelpertext: {
       styleOverrides: {
         root: {
           marginTop: theme.spacing(1),

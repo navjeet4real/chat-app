@@ -4,11 +4,14 @@ import { Alert, IconButton, InputAdornment, Stack, Button } from "@mui/material"
 import { Eye, EyeSlash } from "phosphor-react";
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
+import { useDispatch } from "react-redux";
 import * as Yup from "yup";
 import { RHFTextField } from "../../components/hook-form";
 import FormProvider from "../../components/hook-form/FormProvider";
+import { RegisterUser } from "../../redux/slices/auth";
 
 const RegisterForm = () => {
+  const dispatch = useDispatch();
   const [showPassword, setShowPassword] = useState(false);
   const theme = useTheme();
   const RegisterSchema = Yup.object().shape({
@@ -36,12 +39,12 @@ const RegisterForm = () => {
     reset,
     setError,
     handleSubmit,
-    formState: { errors, isSubmitting, isSubmitSuccessful },
+    formState: { errors },
   } = methods;
 
   const onSubmit = async (data) => {
     try {
-      
+      dispatch(RegisterUser(data))
     } catch (error) {
       console.error(error);
       reset();
@@ -69,7 +72,7 @@ const RegisterForm = () => {
           type={showPassword ? "text" : "password"}
           InputProps={{
             endAdornment: (
-              <InputAdornment>
+              <InputAdornment position="end">
                 <IconButton
                   onClick={() => {
                     setShowPassword(!showPassword);
