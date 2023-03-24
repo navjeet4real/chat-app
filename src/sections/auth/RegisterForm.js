@@ -41,6 +41,7 @@ const RegisterForm = () => {
 
   const onSubmit = async (data) => {
     try {
+      
     } catch (error) {
       console.error(error);
       reset();
