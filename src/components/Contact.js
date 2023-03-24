@@ -195,8 +195,8 @@ const Contact = () => {
             alignItems={"center"}
             spacing={2}
           >
-            {[1, 2, 3].map((item) => (
-              <Box>
+            {[1, 2, 3].map((item, index) => (
+              <Box key={index}>
                 <img src={faker.image.image()} alt={faker.name.fullName()} />
               </Box>
             ))}

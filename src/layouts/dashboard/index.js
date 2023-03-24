@@ -3,15 +3,19 @@ import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Navigate, Outlet } from "react-router-dom";
 import SideBar from "./SideBar";
-import { ShowSnackBar } from "../../redux/slices/app";
+import { SelectConversation, ShowSnackBar } from "../../redux/slices/app";
 import { socket, connectSocket } from "../../socket";
-import { AddDirectConversation, UpdateDirectConversation } from "../../redux/slices/conversation";
+import {
+  AddDirectConversation,
+  UpdateDirectConversation,
+} from "../../redux/slices/conversation";
 
 const DashboardLayout = () => {
   const { isLoggedIn } = useSelector((state) => state.auth);
-  const { conversations } = useSelector(
-    (state) => state.conversations.direct_chat
-  );
+
+  // const { conversations } = useSelector(
+  //   (state) => state.conversations.direct_chat
+  // );
 
   const dispatch = useDispatch();
 
@@ -75,7 +79,7 @@ const DashboardLayout = () => {
       //       })
       //     );
       //   }
-      //   // dispatch(SelectConversation({ room_id: data._id }));
+      //   dispatch(SelectConversation({ room_id: data._id }));
       // });
     }
 

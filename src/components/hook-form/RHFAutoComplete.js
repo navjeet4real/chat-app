@@ -6,10 +6,10 @@ import { Autocomplete, TextField } from "@mui/material";
 RHFAutoComplete.propTypes = {
   name: PropTypes.string,
   label: PropTypes.string,
-  helperText: PropTypes.node,
+  helpertext: PropTypes.node,
 };
 
-export default function RHFAutoComplete({ name, label, helperText, ...other }) {
+export default function RHFAutoComplete({ name, label, helpertext, ...other }) {
   const { control, setValue } = useFormContext();
 
   return (
@@ -26,14 +26,14 @@ export default function RHFAutoComplete({ name, label, helperText, ...other }) {
                 shouldValidate: true,
               })
             }
-            error={!!error}
-            helperText={error ? error.message : helperText}
+            error="false"
+            helpertext={error ? error.message : helpertext}
             {...other}
             renderInput={(params) => (
               <TextField
                 label={label}
                 error={!!error}
-                helperText={error ? error.message : helperText}
+                helpertext={error ? error.message : helpertext}
                 {...params}
               />
             )}

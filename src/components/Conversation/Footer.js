@@ -81,7 +81,7 @@ const ChatInput = ({ setOpenPicker }) => {
                 </Tooltip>
               ))}
             </Stack>
-            <InputAdornment>
+            <InputAdornment position="end">
               <IconButton
                 onClick={() => {
                   setOpenActions((prev) => !prev)
@@ -93,7 +93,7 @@ const ChatInput = ({ setOpenPicker }) => {
           </Stack>
         ),
         endAdornment: (
-          <InputAdornment>
+          <InputAdornment position="end">
             <IconButton onClick={() => {
               setOpenPicker((prev) => !prev)
             }}>

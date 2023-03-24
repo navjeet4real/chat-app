@@ -96,9 +96,10 @@ const SideBar = () => {
             direction="column"
             alignItems="center"
           >
-            {Nav_Buttons.map((item) =>
+            {Nav_Buttons.map((item) =>  
               item.index === selected ? (
                 <Box
+                  key={item.index}
                   sx={{
                     backgroundColor: theme.palette.primary.main,
                     borderRadius: 1.5,
@@ -196,16 +197,16 @@ const SideBar = () => {
             <Stack spacing={1} px={1}>
               {Profile_Menu.map((item, index) => (
                 <MenuItem
+                  key={index}
                   onClick={() => {
                     handleClick();
-                    
                   }}
                 >
                   <Stack
                     onClick={() => {
                       if (index === 2) {
                         dispatch(LogoutUser());
-                      }else{
+                      } else {
                         navigate(getMenuPath(index));
                       }
                     }}

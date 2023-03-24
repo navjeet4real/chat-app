@@ -1,5 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import axios from "../../utils/axios";
+
 const initialState = {
   sidebar: {
     open: false,
@@ -19,6 +20,7 @@ const initialState = {
   chat_type: null,
   room_id: null,
 };
+
 const slice = createSlice({
   name: "app",
   initialState,

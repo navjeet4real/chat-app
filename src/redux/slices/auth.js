@@ -90,58 +90,6 @@ export function LogoutUser() {
   };
 }
 
-export function ForgotPassword(formValues) {
-  return async (dispatch, getState) => {
-    await axios
-      .post(
-        "/auth/forgot-password",
-        {
-          ...formValues,
-        },
-        {
-          headers: {
-            "Content-Type": "application/json",
-          },
-        }
-      )
-      .then((response) => {
-        console.log(response);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  };
-}
-
-export function NewPassword(formValues) {
-  return async (dispatch, getState) => {
-    await axios
-      .post(
-        "/auth/reset-password",
-        {
-          ...formValues,
-        },
-        {
-          headers: {
-            "Content-Type": "application/json",
-          },
-        }
-      )
-      .then((response) => {
-        console.log(response);
-        dispatch(
-          slice.actions.logIn({
-            isLoggedIn: true,
-            token: response.data.token,
-          })
-        );
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  };
-}
-
 export function RegisterUser(formValues) {
   return async (dispatch, getState) => {
     dispatch(slice.actions.updateIsLoading({ isLoading: true, error: false }));
@@ -156,15 +104,15 @@ export function RegisterUser(formValues) {
             "Content-Type": "application/json",
           },
         }
-      )
-      .then(function (response) {
-        console.log(response);
-        dispatch(
-          slice.actions.updateRegisterEmail({ email: formValues.email })
-        );
-        dispatch(slice.actions.updateIsLoading({ isLoading: false, error: false }));
-      })
-      .catch((error) => {
+        )
+        .then(function (response) {
+          console.log(response);
+          dispatch(
+            slice.actions.updateRegisterEmail({ email: formValues.email })
+            );
+            dispatch(slice.actions.updateIsLoading({ isLoading: false, error: false }));
+          })
+          .catch((error) => {
         console.log(error);
         dispatch(slice.actions.updateIsLoading({ isLoading: false, error: true }));
       })
@@ -173,12 +121,12 @@ export function RegisterUser(formValues) {
           window.location.href = "/auth/verify-otp";
         }
       });
-  };
-}
-
-export function VerifyEmail(formValues) {
-  return async (dispatch, getState) => {
-    await axios
+    };
+  }
+  
+  export function VerifyEmail(formValues) {
+    return async (dispatch, getState) => {
+      await axios
       .post(
         "/auth/verify-otp",
         {
@@ -189,19 +137,72 @@ export function VerifyEmail(formValues) {
             "Content-Type": "application/json",
           },
         }
-      )
-      .then(function (response) {
-        console.log(response);
-        dispatch(
-          slice.actions.logIn({
-            isLoggedIn: true,
-            token: response.data.token,
+        )
+        .then(function (response) {
+          console.log(response);
+          dispatch(
+            slice.actions.logIn({
+              isLoggedIn: true,
+              token: response.data.token,
+            })
+            );
+            window.localStorage.setItem("user_id", response.data.user_id)
           })
-        );
-        window.localStorage.setItem("user_id", response.data.user_id)
+          .catch((error) => {
+            console.log(error);
       })
-      .catch((error) => {
-        console.log(error);
-      })
-  };
-}
+    };
+  }
+  
+  
+  export function ForgotPassword(formValues) {
+    return async (dispatch, getState) => {
+      await axios
+        .post(
+          "/auth/forgot-password",
+          {
+            ...formValues,
+          },
+          {
+            headers: {
+              "Content-Type": "application/json",
+            },
+          }
+        )
+        .then((response) => {
+          console.log(response);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    };
+  }
+  
+  export function NewPassword(formValues) {
+    return async (dispatch, getState) => {
+      await axios
+        .post(
+          "/auth/reset-password",
+          {
+            ...formValues,
+          },
+          {
+            headers: {
+              "Content-Type": "application/json",
+            },
+          }
+        )
+        .then((response) => {
+          console.log(response);
+          dispatch(
+            slice.actions.logIn({
+              isLoggedIn: true,
+              token: response.data.token,
+            })
+          );
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    };
+  }

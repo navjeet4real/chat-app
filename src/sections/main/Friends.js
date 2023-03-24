@@ -1,4 +1,4 @@
-import { Dialog, Stack, Tabs, Tab,Slide, DialogContent } from "@mui/material";
+import { Dialog, Stack, Tabs, Tab, Slide, DialogContent } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -19,12 +19,11 @@ const Transition = React.forwardRef(function Transition(props, ref) {
 const UsersList = () => {
   const dispatch = useDispatch();
 
-  const { users } = useSelector((state) => state.app);
-
   useEffect(() => {
     dispatch(FetchUsers());
   }, []);
 
+  const { users } = useSelector((state) => state.app);
   return (
     <>
       {users.map((item, index) => {
@@ -64,7 +63,9 @@ const RequestsList = () => {
   return (
     <>
       {friendRequests.map((item, index) => {
-        return <FriendRequestElement key={item._id} {...item.sender} id={item._id} />;
+        return (
+          <FriendRequestElement key={item._id} {...item.sender} id={item._id} />
+        );
       })}
     </>
   );

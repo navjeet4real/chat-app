@@ -71,7 +71,7 @@ const LoginForm = () => {
           type={showPassword ? "text" : "password"}
           InputProps={{
             endAdornment: (
-              <InputAdornment>
+              <InputAdornment position="end"> 
                 <IconButton
                   onClick={() => {
                     setShowPassword(!showPassword);

@@ -40,12 +40,12 @@ const Chats = () => {
     setOpenDialog(true);
   };
 
-  // useEffect(() => {
-  //   socket.emit("get_direct_conversations",{user_id},(data) => {
-  //     // data => list of conversations
+  useEffect(() => {
+    socket.emit("get_direct_conversations",{user_id},(data) => {
+      // data => list of conversations
 
-  //   })
-  // },[])
+    })
+  },[])
   return (
     <>
       <Box
@@ -107,14 +107,17 @@ const Chats = () => {
                 <Typography variant="subtitle2" sx={{ color: "#676767" }}>
                   Pinned
                 </Typography>
-                {ChatList.filter((item) => item.pinned).map((item) => {
-                  return <ChatElement {...item} />;
+                {ChatList.filter((item) => item.pinned).map((item, index) => {
+                  return <ChatElement key={index}  {...item} />;
                 })}
                 <Typography variant="subtitle2" sx={{ color: "#676767" }}>
                   All Chats
                 </Typography>
-                {/* {conversations && conversations.filter((item) => !item.pinned).map((item) => {
-                  return <ChatElement {...item} />;
+                {ChatList && ChatList.filter((item) => !item.pinned).map((item, index) => {
+                  return <ChatElement key={index} {...item} />;
+                })}
+                {/* {conversations && conversations.filter((item) => !item.pinned).map((item, index) => {
+                  return <ChatElement key={index} {...item} />;
                 })} */}
               </Stack>
             </SimpleBarStyle>

@@ -84,7 +84,7 @@ const ProfileForm = () => {
           <RHFTextField
             name="name"
             label="Name"
-            helperText={"This name is visible to your contacts"}
+            helpertext={"This name is visible to your contacts"}
           />
           <RHFTextField
             name="about"

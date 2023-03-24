@@ -1,6 +1,5 @@
 import { faker } from "@faker-js/faker";
 import { createSlice } from "@reduxjs/toolkit";
-import { dispatch } from "../store";
 
 const user_id = window.localStorage.getItem("user_id");
 const initialState = {
