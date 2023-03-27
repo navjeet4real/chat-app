@@ -42,22 +42,22 @@ const Message = ({ isMobile, menu }) => {
         {current_messages.map((item) => {
           switch (item.type) {
             case "divider":
-              return <Timeline item={item} />;
+              return <Timeline key={item.id} item={item} />;
 
             case "msg":
               switch (item.subtype) {
                 case "img":
-                  return <MediaMsg item={item} menu={menu} />;
+                  return <MediaMsg key={item.id} item={item} menu={menu} />;
                 case "doc":
-                  return <DocMsg item={item} menu={menu} />;
+                  return <DocMsg key={item.id} item={item} menu={menu} />;
                 case "link":
-                  return <LinkMsg item={item} menu={menu} />;
+                  return <LinkMsg key={item.id} item={item} menu={menu} />;
                 case "reply":
-                  return <ReplyMsg item={item} menu={menu} />;
+                  return <ReplyMsg key={item.id} item={item} menu={menu} />;
               }
             default:
               return <>
-                <TextMsg item={item} menu={menu} />
+                <TextMsg key={item.id} item={item} menu={menu} />
               </>;
           }
         })}
