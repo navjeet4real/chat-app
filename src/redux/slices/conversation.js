@@ -18,6 +18,7 @@ const slice = createSlice({
   initialState,
   reducers: {
     fetchDirectConversation(state, action) {
+      console.log(action,"actionssssssssssss")
       const list = action.payload.conversations.map((item) => {
         const this_user = item.participants.find(
           (element) => element._id.toString() !== user_id
@@ -25,7 +26,7 @@ const slice = createSlice({
         return {
           id: item._id,
           user_id: this_user._id,
-          name: `${this_user.firstName}${this_user.lastName}`,
+          name: `${this_user.firstName} ${this_user.lastName}`,
           online: this_user.status === "Online",
           img: faker.image.avatar(),
           msg: faker.music.songName(),
@@ -34,6 +35,7 @@ const slice = createSlice({
           pinned: false,
         };
       });
+      console.log(list, "listssssssssss")
       state.direct_chat.conversations = list;
     },
     updateDirectConversation(state, action) {

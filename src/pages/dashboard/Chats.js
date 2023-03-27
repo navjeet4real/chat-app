@@ -35,7 +35,7 @@ const Chats = () => {
   const [openDialog, setOpenDialog] = useState(false);
   const theme = useTheme();
   const isDesktop = useResponsive("up", "md");
-  // const {conversations} = useSelector((state) => state.conversations.direct_chat)
+  const {conversations} = useSelector((state) => state.conversation.direct_chat)
 
   const handleCloseDialog = () => {
     setOpenDialog(false);
@@ -47,6 +47,7 @@ const Chats = () => {
   useEffect(() => {
     socket.emit("get_direct_conversations",{user_id},(data) => {
       // data => list of conversations
+      console.log(data, "ggggg")
       dispatch(FetchDirectConversations({ conversations: data }));
     })
   },[])
@@ -105,21 +106,21 @@ const Chats = () => {
           <Stack sx={{ flexGrow: 1, overflowY: "scroll", height: "100%" }}>
             <SimpleBarStyle timeout={500} clickOnTrack={false}>
               <Stack spacing={2.4}>
-                <Typography variant="subtitle2" sx={{ color: "#676767" }}>
+                {/* <Typography variant="subtitle2" sx={{ color: "#676767" }}>
                   Pinned
                 </Typography>
                 {ChatList.filter((item) => item.pinned).map((item, index) => {
                   return <ChatElement key={index}  {...item} />;
-                })}
+                })} */}
                 <Typography variant="subtitle2" sx={{ color: "#676767" }}>
                   All Chats
                 </Typography>
-                {ChatList && ChatList.filter((item) => !item.pinned).map((item, index) => {
-                  return <ChatElement key={index} {...item} />;
-                })}
-                {/* {conversations && conversations.filter((item) => !item.pinned).map((item, index) => {
+                {/* {ChatList && ChatList.filter((item) => !item.pinned).map((item, index) => {
                   return <ChatElement key={index} {...item} />;
                 })} */}
+                {conversations && conversations.filter((item) => !item.pinned).map((item, index) => {
+                  return <ChatElement key={index} {...item} />;
+                })}
               </Stack>
             </SimpleBarStyle>
           </Stack>

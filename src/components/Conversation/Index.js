@@ -1,8 +1,7 @@
 import React, { useEffect, useRef } from "react";
 import { useTheme } from "@emotion/react";
 import { Box, Stack } from "@mui/system";
-import Header from "./Header";
-import Footer from "./Footer";
+import {ChatFooter, ChatHeader} from "../Chat"
 import Message from "./Message";
 import { SimpleBarStyle } from "../../components/Scrollbar";
 import useResponsive from "../../hooks/useResponsive";
@@ -25,7 +24,7 @@ const Conversation = () => {
   }, [current_messages]);
   return (
     <Stack height={"100%"} width={isMobile ? "100vw" : "auto"} maxHeight={"100vh"}>
-      <Header />
+      <ChatHeader />
       <Box ref={messageListRef}
         sx={{
           flexGrow: 1, height: "100%", overflowY: "scroll",
@@ -40,7 +39,7 @@ const Conversation = () => {
           <Message menu={true} isMobile={isMobile} />
         </SimpleBarStyle>
       </Box>
-      <Footer />
+      <ChatFooter />
     </Stack>
   );
 };

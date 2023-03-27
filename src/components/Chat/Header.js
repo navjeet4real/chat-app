@@ -18,7 +18,7 @@ import { faker } from "@faker-js/faker";
 import useResponsive from "../../hooks/useResponsive";
 import { ToggleSidebar } from "../../redux/slices/app";
 import { useDispatch } from "react-redux";
-import CallDialog from "../../sections/dashboard/CallDialog";
+// import CallDialog from "../../sections/dashboard/CallDialog";
 
 
 const StyledBadge = styled(Badge)(({ theme }) => ({
@@ -52,15 +52,19 @@ const StyledBadge = styled(Badge)(({ theme }) => ({
 
 const Conversation_Menu = [
   {
+    index: 0,
     title: "Contact info",
   },
   {
+    index: 1,
     title: "Mute notifications",
   },
   {
+    index: 2,
     title: "Clear messages",
   },
   {
+    index: 3,
     title: "Delete chat",
   },
 ];
@@ -180,7 +184,7 @@ const ChatHeader = () => {
             <Box p={1}>
               <Stack spacing={1}>
                 {Conversation_Menu.map((item) => (
-                  <MenuItem onClick={handleCloseConversationMenu}>
+                  <MenuItem key={item.index} onClick={handleCloseConversationMenu}>
                     <Stack
                       sx={{ minWidth: 100 }}
                       direction="row"
@@ -198,12 +202,12 @@ const ChatHeader = () => {
       </Stack>
     </Box>
 
-    {openVoiceDialog && (
+    {/* {openVoiceDialog && (
         <CallDialog
           open={openVoiceDialog}
           handleClose={handleCloseVoiceDialog}
         />
-      )}
+      )} */}
    </>
 
     
