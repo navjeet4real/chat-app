@@ -29,6 +29,7 @@ import { useDispatch } from "react-redux";
 import { ToggleSidebar, UpdateSidebarType } from "../redux/slices/app";
 import { faker } from "@faker-js/faker";
 import AntSwitch from "./AntSwitch";
+import useResponsive from "../hooks/useResponsive";
 
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
@@ -80,6 +81,7 @@ const DeleteDialog = ({ open, handleClose }) => {
 };
 const Contact = () => {
   const theme = useTheme();
+  const isDesktop = useResponsive("up", "md");
   const dispatch = useDispatch();
   const [openBlock, setOpenBlock] = useState(false);
   const [openDelete, setOpenDelete] = useState(false);
@@ -90,7 +92,7 @@ const Contact = () => {
     setOpenDelete(false);
   };
   return (
-    <Box sx={{ width: 320, height: "100vh" }}>
+    <Box sx={{ width: !isDesktop ? "100vw" : 320, maxHeight: "100vh" }}>
       <Stack sx={{ height: "100%" }}>
         <Box
           sx={{
