@@ -19,45 +19,45 @@ import { useDispatch, useSelector } from "react-redux";
 const Message = ({ isMobile, menu }) => {
   const dispatch = useDispatch();
 
-  // const { conversations, current_messages } = useSelector(
-  //   (state) => state.conversation.direct_chat
-  // );
-  // const { room_id } = useSelector((state) => state.app);
+  const { conversations, current_messages } = useSelector(
+    (state) => state.conversation.direct_chat
+  );
+  const { room_id } = useSelector((state) => state.app);
 
-  // useEffect(() => {
-  //   const current = conversations.find((item) => item.id === room_id);
+  useEffect(() => {
+    const current = conversations.find((item) => item.id === room_id);
 
-  //   socket.emit("get_messages", { conversation_id: current.id }, (data) => {
-  //     // data => list of messages
-  //     console.log(data, "List of messages");
-  //     dispatch(FetchCurrentMessages({ messages: data }));
-  //   });
+    socket.emit("get_messages", { conversation_id: current.id }, (data) => {
+      // data => list of messages
+      console.log(data, "List of messages");
+      dispatch(FetchCurrentMessages({ messages: data }));
+    });
 
-  //   dispatch(SetCurrentConversation(current));
-  // }, []);
+    dispatch(SetCurrentConversation(current));
+  }, []);
 
   return (
     <Box p={isMobile ? 1 : 3}>
       <Stack spacing={3}>
-        {Chat_History.map((item) => {
+        {current_messages.map((item) => {
           switch (item.type) {
             case "divider":
-              return <Timeline item={item} />;
+              return <Timeline key={item.id} item={item} />;
 
             case "msg":
               switch (item.subtype) {
                 case "img":
-                  return <MediaMsg item={item} menu={menu} />;
+                  return <MediaMsg key={item.id} item={item} menu={menu} />;
                 case "doc":
-                  return <DocMsg item={item} menu={menu} />;
+                  return <DocMsg key={item.id} item={item} menu={menu} />;
                 case "link":
-                  return <LinkMsg item={item} menu={menu} />;
+                  return <LinkMsg key={item.id} item={item} menu={menu} />;
                 case "reply":
-                  return <ReplyMsg item={item} menu={menu} />;
+                  return <ReplyMsg key={item.id} item={item} menu={menu} />;
               }
             default:
               return <>
-                <TextMsg item={item} menu={menu} />
+                <TextMsg key={item.id} item={item} menu={menu} />
               </>;
           }
         })}

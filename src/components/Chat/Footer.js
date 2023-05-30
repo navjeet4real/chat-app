@@ -36,30 +36,35 @@ const StyledInput = styled(TextField)(({ theme }) => ({
 
 const Actions = [
   {
+    index: 0,
     color: "#4da5fe",
     icon: <Image size={24} />,
     y: 102,
     title: "Photo/Video",
   },
   {
+    index: 1,
     color: "#1b8cfe",
     icon: <Sticker size={24} />,
     y: 172,
     title: "Stickers",
   },
   {
+    index: 2,
     color: "#0172e4",
     icon: <Camera size={24} />,
     y: 242,
     title: "Image",
   },
   {
+    index: 3,
     color: "#0159b2",
     icon: <File size={24} />,
     y: 312,
     title: "Document",
   },
   {
+    index: 4,
     color: "#013f7f",
     icon: <User size={24} />,
     y: 382,
@@ -93,7 +98,7 @@ const ChatInput = ({ openPicker, setOpenPicker, setValue,
               }}
             >
               {Actions.map((item) => (
-                <Tooltip placement="right" title={item.title}>
+                <Tooltip key={item.index} placement="right" title={item.title}>
                   <Fab
                     onClick={() => {
                       setOpenActions(!openActions);
@@ -166,7 +171,7 @@ const Footer = () => {
 
   const user_id = window.localStorage.getItem("user_id");
 
-  const { sideBar, room_id } = useSelector((state) => state.app);
+  const { sidebar, room_id } = useSelector((state) => state.app);
 
   const [value, setValue] = useState("");
   const inputRef = useRef(null);
@@ -211,7 +216,7 @@ const Footer = () => {
                 position: "fixed",
                 display: openPicker ? "inline" : "none",
                 bottom: 81,
-                right: isMobile ? 20 : sideBar.open ? 420 : 100,
+                right: isMobile ? 20 : sidebar.open ? 420 : 100,
               }}
             >
               <Picker
